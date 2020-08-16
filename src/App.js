@@ -1,4 +1,5 @@
 import React from 'react';
+import Tree from './components/Tree';
 
 import { SideMenu, Title } from './styles/components';
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <SideMenu>
         <Title>Online Editor</Title>
+        <Tree />
       </SideMenu>
     </>
   );
