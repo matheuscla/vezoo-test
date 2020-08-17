@@ -5,6 +5,7 @@ export const SideMenu = styled.div`
   border-right: 1px solid rgba(67, 70, 85, 0.4);
   height: 100%;
   padding: 40px 30px;
+  overflow-x: scroll;
 `
 
 export const Title = styled.h1`

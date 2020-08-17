@@ -2,10 +2,11 @@ import React from 'react'
 
 import { Container, Name } from './styles';
 
-function Folder({ name }) {
+function Folder({ name, children }) {
   return(
     <Container>
       <Name>{name}</Name>
+      {children}
     </Container>
   )
 }

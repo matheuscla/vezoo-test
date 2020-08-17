@@ -21,11 +21,15 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
   }
 
-  ::-webkit-scrollbar {
-    width: 4px;
+  ::-webkit-scrollbar, ::-webkit-scrollbar-corner    {
+    width: 2px;
   }
 
-  ::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-corner:vertical {
+    height: 2px;
+  }
+
+  ::-webkit-scrollbar-track  {
     -webkit-box-shadow: inset 0 0 6px #434655;
     -webkit-border-radius: 10px;
     border-radius: 10px;

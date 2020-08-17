@@ -1,6 +1,8 @@
 import React from 'react';
 import Tree from './components/Tree';
 
+import mock from './mock.json'
+
 import { SideMenu, Title } from './styles/components';
 
 function App() {
@@ -8,7 +10,7 @@ function App() {
     <>
       <SideMenu>
         <Title>Online Editor</Title>
-        <Tree />
+        <Tree data={mock} />
       </SideMenu>
     </>
   );
