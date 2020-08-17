@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Editor from 'react-simple-code-editor';
-import { AiOutlineDelete, AiOutlineSave } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-java';
+import { deleteFile } from '../../store/ducks/editor';
 
 import Loading from '../Loading';
 
@@ -12,6 +12,7 @@ import { Header, Actions, Delete, Save } from './styles';
 import './syntax.css';
 
 function CodeEditor() {
+  const dispatch = useDispatch();
   const { selected_file, loading } = useSelector(state => state.editor);
 
   if (loading) {
@@ -25,7 +26,7 @@ function CodeEditor() {
 
       <Actions>
         <Save>Save</Save>
-        <Delete>Delete</Delete>
+        <Delete onClick={() => dispatch(deleteFile(selected_file.id))}>Delete</Delete>
       </Actions>
       </Header>
     <Editor

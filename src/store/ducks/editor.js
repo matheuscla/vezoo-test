@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { filterTree } from '../../utils';
 
 const Types = {
   GET_TREE: 'GET_TREE',
   GET_FILE: 'GET_FILE',
-  SET_LOADING: 'SET_LOADING'
+  DELETE_FILE: 'DELETE_FILE',
+  SET_LOADING: 'SET_LOADING',
 }
 
 export const getTree = () => async dispatch => {
@@ -32,6 +34,21 @@ export const getFile = id => async dispatch => {
   }
 }
 
+export const deleteFile = id => async dispatch => {
+  try {
+    dispatch({ type: Types.SET_LOADING, payload: true });
+
+    await axios.delete(`https://my-json-server.typicode.com/open-veezoo/editor/files/${id}`);
+
+    return dispatch({ type: Types.DELETE_FILE, payload: id });
+  } catch(e) {
+    console.error(e);
+    throw e;
+  } finally {
+    dispatch({ type: Types.SET_LOADING, payload: false });
+  }
+}
+
 const INITIAL_STATE = {
   tree: [],
   selected_file: null,
@@ -45,7 +62,13 @@ export default function(state = INITIAL_STATE, action) {
     case Types.GET_TREE:
       return { ...state, tree: action.payload };
     case Types.GET_FILE:
-      return { ...state, selected_file: action.payload };  
+      return { ...state, selected_file: action.payload };
+    case Types.DELETE_FILE:
+      return {
+        ...state,
+        tree: filterTree(state.tree, ({ id }) => id !== action.payload),
+        selected_file: null
+      };
     default:
       return state;
   }
