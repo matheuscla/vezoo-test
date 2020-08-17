@@ -1,11 +1,13 @@
 import React from 'react';
+import { DiJava } from 'react-icons/di';
 
-import { Container } from './styles';
+import { Container, Name } from './styles';
 
 function File({ name }) {
   return(
     <Container>
-      {name}
+      <DiJava />
+      <Name>{name}</Name>
     </Container>
   );
 }

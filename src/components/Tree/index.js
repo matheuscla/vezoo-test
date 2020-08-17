@@ -5,23 +5,23 @@ import File from '../File';
 import { Container } from './styles';
 
 function Tree({ data }) {
-  const RenderTree = ({ data }) => {
-    return data && data.map(item => {
+  const RenderTree = ({ content }) => {
+    return content && content.map(item => {
       if (item.isDirectory) {
         return(
-          <Folder name={item.name}>
-            <RenderTree data={item.children} />
+          <Folder key={item.id} name={item.name}>
+            <RenderTree content={item.children} />
           </Folder>
         );
       }
   
-      return <File name={item.name} />
-    })
+      return <File key={item.id} name={item.name} />
+    });
   }
 
   return(
     <Container>
-      <RenderTree data={data} />
+      <RenderTree content={data} />
     </Container>
   );
 }
