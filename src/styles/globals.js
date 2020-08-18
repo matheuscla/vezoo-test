@@ -56,6 +56,16 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     border: 0;
   }
+
+  .Toastify__toast {
+    border-radius: 4px;
+    font-weight: bold;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .Toastify__toast--success {
+    background: #4ABD5F;
+  }
 `
 
 export default GlobalStyle

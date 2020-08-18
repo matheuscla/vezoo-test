@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { filterTree } from '../../utils';
+import { filterTree, renderToast } from '../../utils';
 
 const Types = {
   GET_TREE: 'GET_TREE',
@@ -41,6 +41,8 @@ export const deleteFile = id => async dispatch => {
 
     await axios.delete(`https://my-json-server.typicode.com/open-veezoo/editor/files/${id}`);
 
+    renderToast('success', 'File deleted!');
+
     return dispatch({ type: Types.DELETE_FILE, payload: id });
   } catch(e) {
     console.error(e);
@@ -53,6 +55,8 @@ export const deleteFile = id => async dispatch => {
 export const saveFile = file => async dispatch => {
   try {
     await axios.put(`https://my-json-server.typicode.com/open-veezoo/editor/files/${file.id}`, { ...file });
+
+    renderToast('success', 'File saved!');
 
     return dispatch({ type: Types.SAVE_FILE, payload: file });
   } catch(e) {
