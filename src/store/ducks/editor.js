@@ -5,6 +5,7 @@ const Types = {
   GET_TREE: 'GET_TREE',
   GET_FILE: 'GET_FILE',
   DELETE_FILE: 'DELETE_FILE',
+  SAVE_FILE: 'SAVE_FILE',
   SET_LOADING: 'SET_LOADING',
 }
 
@@ -49,6 +50,17 @@ export const deleteFile = id => async dispatch => {
   }
 }
 
+export const saveFile = file => async dispatch => {
+  try {
+    await axios.put(`https://my-json-server.typicode.com/open-veezoo/editor/files/${file.id}`, { ...file });
+
+    return dispatch({ type: Types.SAVE_FILE, payload: file });
+  } catch(e) {
+    console.error(e);
+    throw e;
+  }
+}
+
 const INITIAL_STATE = {
   tree: [],
   selected_file: null,
@@ -69,6 +81,11 @@ export default function(state = INITIAL_STATE, action) {
         tree: filterTree(state.tree, ({ id }) => id !== action.payload),
         selected_file: null
       };
+    case Types.SAVE_FILE:
+      return {
+        ...state,
+        selected_file: action.payload,
+      }  
     default:
       return state;
   }
