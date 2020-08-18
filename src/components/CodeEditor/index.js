@@ -8,7 +8,7 @@ import { deleteFile, saveFile } from '../../store/ducks/editor';
 
 import Loading from '../Loading';
 
-import { Header, Actions, Delete, Save } from './styles';
+import { Header, Actions, Delete, Save, EmptyFile } from './styles';
 import './syntax.css';
 
 function CodeEditor() {
@@ -24,7 +24,7 @@ function CodeEditor() {
     return <Loading />
   }
 
-  return !loading && selected_file && (
+  return !loading && selected_file ? (
     <>
     <Header>
       <span>{selected_file.name}</span>
@@ -45,7 +45,7 @@ function CodeEditor() {
       }}
     />
     </>
-  );
+  ) : <EmptyFile>Select a file and start coding...</EmptyFile>
 }
 
 export default CodeEditor;

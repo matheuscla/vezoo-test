@@ -35,3 +35,8 @@ export const Save = styled(BaseBtn)`
 export const Delete = styled(BaseBtn)`
   background: #D64848;
 `
+
+export const EmptyFile = styled.h1`
+  font-size: 16px;
+  line-height: 24px;
+`
