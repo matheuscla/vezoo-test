@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { filterTree, renderToast } from '../../utils';
 
-const Types = {
+export const Types = {
   GET_TREE: 'GET_TREE',
   GET_FILE: 'GET_FILE',
   DELETE_FILE: 'DELETE_FILE',
